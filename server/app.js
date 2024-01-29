@@ -10,7 +10,7 @@ app.use(cookieParser());
 // SETTING UP DOTENV
 dotenv.config({ path: "./config.env" });
 
-const PORT = process.env.PORT || 8000;
+const PORT = 8000;
 
 // CONNECTING WITH DATABASE
 require("./db/connection");

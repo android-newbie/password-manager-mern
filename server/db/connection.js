@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const DB = process.env.DATABASE;
+const DB = "mongodb+srv://piyush192:nimcet@cluster0.huh1vr9.mongodb.net/";
 
 
 mongoose.connect(DB, {
