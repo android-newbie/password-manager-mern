@@ -10,6 +10,7 @@ import Logout from './Pages/Logout/Logout';
 import { useSelector, useDispatch } from "react-redux";
 import { setAuth, setName, setEmail, setPasswords } from "./redux/actions";
 import { checkAuthenticated } from "./axios/instance";
+import GeneratePassword from "./Components/GeneratePassword/GeneratePassword";
 
 function App()
 {
@@ -60,6 +61,7 @@ function App()
           <Route exact path="/signup"> <Signup /> </Route>
           <Route exact path="/passwords"> <Passwords /> </Route>
           <Route exact path="/logout"> <Logout /> </Route>
+          <Route exact path="/generate"> <GeneratePassword /> </Route>
 
         </Switch>
       </Router>

@@ -40,6 +40,7 @@ function Navbar()
                             isAuthenticated ?
                                 (<>
                                     <li><Link to="/passwords">Passwords</Link></li>
+                                    <li className="nav-item"><Link to="/generate">AutoGenerate</Link></li>
                                     <li><Link to="/logout">Logout</Link></li>
                                 </>)
                                 :
@@ -65,6 +66,7 @@ function Navbar()
                             (
                                 <>
                                     <li className="nav-item" onClick={handleMenu}><Link to="/passwords">Passwords</Link></li>
+                                    <li className="nav-item"><Link to="/generate" onClick={handleMenu}>AutoGenerate</Link></li>
                                     <li className="nav-item" onClick={handleMenu}><Link to="/logout">Logout</Link></li>
                                 </>
                             )

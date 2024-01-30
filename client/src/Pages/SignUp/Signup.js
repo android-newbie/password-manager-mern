@@ -19,6 +19,9 @@ function Signup()
         password: "",
         cpassword: ""
     });
+    const [passwordStrength, setPasswordStrength] = useState("");
+    const [cnfPasswordStrength, setCnfPasswordStrength] = useState("");
+
 
     const handleChange = (e) =>
     {
@@ -31,7 +34,37 @@ function Signup()
                 [name]: value
             }
         })
+
+        if(e.target.id === 'password'){
+            console.log('password changes', e.target.value);
+            let strength = checkPasswordStrength(e.target.value);
+            strength === true? setPasswordStrength("Strong") : setPasswordStrength("Weak");;
+        }
+        if(e.target.id === 'cpassword'){
+            console.log('password changes', e.target.value);
+            let strength = checkPasswordStrength(e.target.value);
+            strength === true? setCnfPasswordStrength("Strong") : setCnfPasswordStrength("Weak");;
+        }
+
+        // Check password strength
     }
+
+    const checkPasswordStrength = (password) => {
+        // Implement your own logic to determine password strength
+        // You can use regular expressions, libraries, or APIs for a more sophisticated check
+        // For simplicity, let's check if the password length is at least 6 characters
+                    
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasSpecialCharacter = /[!@#$%^&*]/.test(password);
+        const hasNumber = /\d/.test(password);
+
+        if (password.length >= 8 && hasUpperCase && hasLowerCase && hasSpecialCharacter && hasNumber) {
+            return true;
+        } else {
+            return false;
+        }
+      }
 
     const handleRegister = async () =>
     {
@@ -109,12 +142,18 @@ function Signup()
 
                     <div className="inputs">
                         <label> Password </label>
-                        <input type="password" placeholder="Password" name="password" required onChange={handleChange} value={userData.password} />
+                        <input type="password" placeholder="Password" name="password" id='password' required onChange={handleChange} value={userData.password} />
+                        {userData.password !== '' && 
+                        <p className={` ${passwordStrength==='Weak' ? 'red' : 'green'}`}>Password Strength: {passwordStrength}</p> }
+
                     </div>
 
                     <div className="inputs">
                         <label> Confirm Password </label>
-                        <input type="password" placeholder="Confirm Password" name="cpassword" onChange={handleChange} required value={userData.cpassword} />
+                        <input type="password" placeholder="Confirm Password" name="cpassword" id='cpassword' onChange={handleChange} required value={userData.cpassword} />
+                        {userData.cpassword !== '' &&
+                        <p className={` ${cnfPasswordStrength==='Weak' ? 'red' : 'green'}`}>Password Strength: {cnfPasswordStrength}</p>}
+
                     </div>
 
                     <p>
